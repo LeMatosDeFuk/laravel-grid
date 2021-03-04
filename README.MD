@@ -6,8 +6,6 @@ This repository is a copy of https://github.com/leantony/laravel-grid/ with **LA
 
 _So all credits goes to him._
 
-# IT'S ALSO EDITED FOR MY PERSONAL USE
-
 
 # Install
 `composer require lematosdefuk/laravel-grid`
