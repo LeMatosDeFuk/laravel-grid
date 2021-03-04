@@ -396,7 +396,7 @@ var _grids = _grids || {};
           }
         },
         beforeSend: function beforeSend() {
-          $(submitButton).attr('disabled', 'disabled').html('<i class="fa fa-spinner fa-spin"></i>&nbsp;loading');
+          $(submitButton).attr('disabled', 'disabled').html('<i class="fa fa-spinner fa-spin"></i>');
         },
         complete: function complete() {
           $(submitButton).html(originalButtonHtml).removeAttr('disabled');
@@ -452,7 +452,7 @@ var _grids = _grids || {};
             var modalDialog = $('#bootstrap_modal');
             var modalSize = btn.data('modal-size');
             // show spinner as soon as user click is triggered
-            btn.attr('disabled', 'disabled').html('<i class="fa fa-spinner fa-spin"></i>&nbsp;loading');
+            btn.attr('disabled', 'disabled').html('<i class="fa fa-spinner fa-spin"></i>');
 
             // load the modal into the container put on the html
             $('.modal-content').load($(this).attr('href') || $(this).data('href'), function () {
