@@ -109,7 +109,7 @@ trait RendersButtons
             'class' => "btn btn-success",
             'showModal' => true,
             'type' => static::$TYPE_TOOLBAR,
-            'icon' => 'fa-plus-circle',
+            'icon' => 'fa fa-plus-circle',
             'url' => $this->getCreateUrl(['ref' => $this->getId()]),
             'title' => 'add new ' . $this->shortSingularGridName(),
             'renderIf' => function () {
@@ -129,7 +129,7 @@ trait RendersButtons
             'name' => 'Refresh',
             'pjaxEnabled' => true,
             'position' => 2,
-            'icon' => 'fa-refresh',
+            'icon' => 'fa fa-refresh',
             'class' => 'btn btn-primary',
             'gridId' => $this->getId(),
             'url' => $this->getRefreshUrl(),
@@ -150,7 +150,7 @@ trait RendersButtons
     {
         return (new ExportButton([
             'name' => 'Export',
-            'icon' => 'fa-download',
+            'icon' => 'fa fa-download',
             'class' => 'btn btn-secondary',
             'title' => 'export data',
             'renderCustom' => function ($data) {
@@ -175,7 +175,7 @@ trait RendersButtons
     {
         return (new GenericButton([
             'name' => 'View',
-            'icon' => 'fa-eye',
+            'icon' => 'fa fa-eye',
             'position' => 1,
             'class' => 'btn btn-outline-primary btn-sm grid-row-button',
             'showModal' => true,
@@ -205,7 +205,7 @@ trait RendersButtons
             'name' => 'Delete',
             'position' => 2,
             'class' => 'data-remote grid-row-button btn btn-outline-danger btn-sm',
-            'icon' => 'fa-trash',
+            'icon' => 'fa fa-trash',
             'type' => static::$TYPE_ROW,
             'title' => 'delete record',
             'pjaxEnabled' => false,
