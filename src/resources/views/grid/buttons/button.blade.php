@@ -25,7 +25,7 @@
                 @endforeach
         >
             @if($icon)
-                <i class="fa {{ $icon }}"></i>
+                <i class="{{ $icon }}"></i>
             @endif
             {{ $name }}
         </a>
