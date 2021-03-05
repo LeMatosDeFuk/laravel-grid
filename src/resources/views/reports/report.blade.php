@@ -1,11 +1,12 @@
 <style type="text/css">
+    body { font-family: DejaVu Sans, sans-serif; }
     .tg  {border-collapse:collapse;border-spacing:0;border-color:#999;margin:0px auto;}
-    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
-    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
-    .tg .tg-s4m5{font-size:13px;font-family:Arial, Helvetica, sans-serif !important;;vertical-align:top}
+    .tg td{font-family:DejaVu Sans, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+    .tg th{font-family:DejaVu Sans, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
+    .tg .tg-s4m5{font-size:13px;font-family:DejaVu Sans, sans-serif, sans-serif !important;;vertical-align:top}
     .tg-sort-header::-moz-selection{background:0 0}.tg-sort-header::selection{background:0 0}.tg-sort-header{cursor:pointer}.tg-sort-header:after{content:'';float:right;margin-top:7px;border-width:0 5px 5px;border-style:solid;border-color:#404040 transparent;visibility:hidden}.tg-sort-header:hover:after{visibility:visible}.tg-sort-asc:after,.tg-sort-asc:hover:after,.tg-sort-desc:after{visibility:visible;opacity:.4}.tg-sort-desc:after{border-bottom:none;border-width:5px 5px 0}@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style>
 <div class="tg-wrap">
-    <h2 style="font-family:Arial, sans-serif; text-align: center; text-decoration: underline;">{{ $title ?? 'Data report' }}</h2>
+    <h2 style="font-family:DejaVu Sans, sans-serif; text-align: center; text-decoration: underline;">{{ $title ?? 'Data report' }}</h2>
     <table id="tg-LzT6P" class="tg">
         <tr>
             @foreach($columns as $column)
