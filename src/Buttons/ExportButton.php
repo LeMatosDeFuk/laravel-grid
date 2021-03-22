@@ -32,33 +32,33 @@ class ExportButton extends GenericButton
 
         $createdOptions = [
             'xlsx' => [
-                'name' => 'excel',
+                'name' => 'Excel',
                 'url' => $this->generateExportUrl('xlsx'),
-                'icon' => 'file-excel-o',
+                'icon' => 'fas fa-file-excel',
                 'title' => 'export to excel'
             ],
             'csv' => [
                 'name' => 'csv',
                 'url' => $this->generateExportUrl('csv'),
-                'icon' => 'file',
+                'icon' => 'fas fa-file-csv',
                 'title' => 'export to csv'
             ],
             'pdf' => [
                 'name' => 'pdf',
                 'url' => $this->generateExportUrl('pdf'),
-                'icon' => 'file-pdf-o',
+                'icon' => 'fas fa-pdf',
                 'title' => 'export to pdf'
             ],
             'html' => [
                 'name' => 'html',
                 'url' => $this->generateExportUrl('html'),
-                'icon' => 'html5',
+                'icon' => 'fab fa-html5',
                 'title' => 'export to html'
             ],
             'json' => [
                 'name' => 'json',
                 'url' => $this->generateExportUrl('json'),
-                'icon' => 'file-o',
+                'icon' => 'fas fa-code',
                 'title' => 'export to json'
             ]
         ];

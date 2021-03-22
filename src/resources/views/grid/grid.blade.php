@@ -84,7 +84,7 @@
             @if($grid->hasItems())
                 @if($grid->warnIfEmpty())
                     <div class="alert alert-warning" role="alert">
-                        <strong><i class="fa fa-exclamation-triangle"></i>&nbsp;@lang('No data present!')</strong>
+                        <strong><i class="fas fa-exclamation-triangle text-white"></i>&nbsp;@lang('No data present!')</strong>
                     </div>
                 @endif
             @else
