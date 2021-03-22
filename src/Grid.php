@@ -313,7 +313,7 @@ abstract class Grid implements Htmlable, GridInterface, GridButtonsInterface, Gr
 
         $placeholder = collect($this->searchableColumns)->implode(',');
 
-        return sprintf('search %s by their %s ...', Str::lower($this->getName()), $placeholder);
+        return sprintf('Search %s by their %s ...', Str::lower($this->getName()), $placeholder);
     }
 
     /**
