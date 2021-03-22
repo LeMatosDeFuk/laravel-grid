@@ -105,7 +105,7 @@ trait RendersButtons
         return (new GenericButton([
             'gridId' => $this->getId(),
             'position' => 1,
-            'name' => "Create",
+            'name' => __("Create"),
             'class' => "btn btn-success",
             'showModal' => true,
             'type' => static::$TYPE_TOOLBAR,
@@ -126,7 +126,7 @@ trait RendersButtons
     protected function addRefreshButton(): GenericButton
     {
         return (new GenericButton([
-            'name' => 'Refresh',
+            'name' => __('Refresh'),
             'pjaxEnabled' => true,
             'position' => 2,
             'icon' => 'fa fa-refresh',
@@ -149,7 +149,7 @@ trait RendersButtons
     protected function addExportButton(): GenericButton
     {
         return (new ExportButton([
-            'name' => 'Export',
+            'name' => __('Export'),
             'icon' => 'fa fa-download',
             'class' => 'btn btn-secondary',
             'title' => 'export data',
@@ -174,7 +174,7 @@ trait RendersButtons
     protected function addViewButton(): GenericButton
     {
         return (new GenericButton([
-            'name' => 'View',
+            'name' => __('View'),
             'icon' => 'fa fa-eye',
             'position' => 1,
             'class' => 'btn btn-outline-primary btn-sm grid-row-button',
@@ -202,7 +202,7 @@ trait RendersButtons
     {
         return (new GenericButton([
             'gridId' => $this->getId(),
-            'name' => 'Delete',
+            'name' => __('Delete'),
             'position' => 2,
             'class' => 'data-remote grid-row-button btn btn-outline-danger btn-sm',
             'icon' => 'fa fa-trash',

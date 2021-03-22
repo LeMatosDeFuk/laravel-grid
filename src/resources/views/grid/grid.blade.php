@@ -32,18 +32,18 @@
                                 <a data-trigger-pjax="1" class="data-sort"
                                    href="{{ $grid->getSortUrl($column->key, $grid->getSelectedSortDirection()) }}">
                                     @if($column->useRawHtmlForLabel)
-                                        {!! $column->name !!}
+                                        {!! __($column->name) !!}
                                     @else
-                                        {{ $column->name }}
+                                        {{ __($column->name) }}
                                     @endif
                                 </a>
                             </th>
                         @else
                             <th class="{{ is_callable($column->columnClass) ? call_user_func($column->columnClass) : $column->columnClass }}">
                                 @if($column->useRawHtmlForLabel)
-                                    {!! $column->name !!}
+                                    {!! __($column->name) !!}
                                 @else
-                                    {{ $column->name }}
+                                    {{ __($column->name) }}
                                 @endif
                             </th>
                         @endif
@@ -54,9 +54,9 @@
                                 <a data-trigger-pjax="1" class="data-sort"
                                    href="{{ $grid->getSortUrl($column->key, $grid->getSelectedSortDirection()) }}">
                                     @if($column->useRawHtmlForLabel)
-                                        {!! $column->name !!}
+                                        {!! __($column->name) !!}
                                     @else
-                                        {{ $column->name }}
+                                        {{ __($column->name) }}
                                     @endif
                                 </a>
                             </th>
@@ -64,9 +64,9 @@
                             <th scope="col"
                                 class="{{ is_callable($column->columnClass) ? call_user_func($column->columnClass) : $column->columnClass }}">
                                 @if($column->useRawHtmlForLabel)
-                                    {!! $column->name !!}
+                                    {!! __($column->name) !!}
                                 @else
-                                    {{ $column->name }}
+                                    {{ __($column->name) }}
                                 @endif
                             </th>
                         @endif
@@ -84,7 +84,7 @@
             @if($grid->hasItems())
                 @if($grid->warnIfEmpty())
                     <div class="alert alert-warning" role="alert">
-                        <strong><i class="fa fa-exclamation-triangle"></i>&nbsp;No data present!.</strong>
+                        <strong><i class="fa fa-exclamation-triangle"></i>&nbsp;@lang('No data present!')</strong>
                     </div>
                 @endif
             @else
@@ -164,25 +164,25 @@
 @endsection
 @push('grid_js')
     <script>
-      (function($) {
-        var grid = "{{ '#' . $grid->getId() }}";
-        var filterForm = "{{ '#' . $grid->getFilterFormId() }}";
-        var searchForm = "{{ '#' . $grid->getSearchFormId() }}";
-        _grids.grid.init({
-          id: grid,
-          filterForm: filterForm,
-          dateRangeSelector: '.date-range',
-          searchForm: searchForm,
-          pjax: {
-            pjaxOptions: {
-              scrollTo: false,
-            },
-            // what to do after a PJAX request. Js plugins have to be re-intialized
-            afterPjax: function(e) {
-              _grids.init();
-            },
-          },
-        });
-      })(jQuery);
+        (function($) {
+            var grid = "{{ '#' . $grid->getId() }}";
+            var filterForm = "{{ '#' . $grid->getFilterFormId() }}";
+            var searchForm = "{{ '#' . $grid->getSearchFormId() }}";
+            _grids.grid.init({
+                id: grid,
+                filterForm: filterForm,
+                dateRangeSelector: '.date-range',
+                searchForm: searchForm,
+                pjax: {
+                    pjaxOptions: {
+                        scrollTo: false,
+                    },
+                    // what to do after a PJAX request. Js plugins have to be re-intialized
+                    afterPjax: function(e) {
+                        _grids.init();
+                    },
+                },
+            });
+        })(jQuery);
     </script>
 @endpush
