@@ -105,7 +105,7 @@ trait AddsColumnFilters
             'formId' => $this->getFilterFormId(),
             'class' => 'form-control grid-datepicker grid-filter ' . $elementClass,
             'type' => 'text', // just use text, since its text input
-            'title' => 'filter by ' . $elementId,
+            'title' => $elementId,
             'dataAttributes' => $filterDataAttributes
         ]);
         return $filter;
@@ -139,7 +139,7 @@ trait AddsColumnFilters
             'formId' => $this->getFilterFormId(),
             'class' => 'form-control grid-filter ' . $elementClass,
             'type' => 'text',
-            'title' => 'filter by ' . $elementId,
+            'title' => $elementId,
         ]);
         return $filter;
     }
