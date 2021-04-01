@@ -154,6 +154,10 @@ class RowFilterHandler
                     }
                 }
             } else {
+                if ($operator === 'LIKE') {
+                    $value = $value . '%';
+                }
+
                 $this->getQuery()->where($columnName, $operator, $value, $this->getGrid()->getGridFilterQueryType());
             }
         }
