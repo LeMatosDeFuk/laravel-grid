@@ -1,6 +1,7 @@
 <?php
 /**
  * Copyright (c) 2018.
+ *
  * @author Antony [leantony] Chacha
  */
 
@@ -16,19 +17,20 @@ class RowFilterHandler
 
     /**
      * RowFilterHandler constructor.
+     *
      * @param GridInterface $grid
-     * @param Request $request
-     * @param $builder
-     * @param $validTableColumns
-     * @param $data
+     * @param Request       $request
+     * @param               $builder
+     * @param               $validTableColumns
+     * @param               $data
      */
     public function __construct(GridInterface $grid, Request $request, $builder, $validTableColumns, $data)
     {
-        $this->grid = $grid;
-        $this->request = $request;
-        $this->query = $builder;
+        $this->grid             = $grid;
+        $this->request          = $request;
+        $this->query            = $builder;
         $this->validGridColumns = $validTableColumns;
-        $this->args = $data;
+        $this->args             = $data;
     }
 
     /**
@@ -39,7 +41,7 @@ class RowFilterHandler
     public function filterRows()
     {
         if (!empty($this->request->query())) {
-            $columns = $this->getGrid()->getColumns();
+            $columns      = $this->getGrid()->getColumns();
             $tableColumns = $this->getValidGridColumns();
 
             foreach ($columns as $columnName => $columnData) {
@@ -51,10 +53,12 @@ class RowFilterHandler
                 if (!$this->canUseProvidedUserInput($this->getRequest()->get($columnName))) {
                     continue;
                 }
+
                 // column check. Since the column data is coming from a user query
-                if (!$this->canUseProvidedColumn($columnName, $tableColumns)) {
+                if (!isset($columnData['filter']['relationship']) && !$this->canUseProvidedColumn($columnName, $tableColumns)) {
                     continue;
                 }
+
                 $operator = $this->extractFilterOperator($columnName, $columnData)['operator'];
 
                 $this->doFilter($columnName, $columnData, $operator, $this->getRequest()->get($columnName));
@@ -66,7 +70,8 @@ class RowFilterHandler
      * Check if filtering can be done
      *
      * @param string $columnName
-     * @param array $columnData
+     * @param array  $columnData
+     *
      * @return bool
      */
     public function canFilter(string $columnName, array $columnData)
@@ -78,6 +83,7 @@ class RowFilterHandler
      * Check if provided user input can be used
      *
      * @param string|null $userInput
+     *
      * @return bool
      */
     public function canUseProvidedUserInput($userInput)
@@ -86,6 +92,7 @@ class RowFilterHandler
         if ($userInput === null || strlen(trim($userInput)) < 1) {
             return false;
         }
+
         return true;
     }
 
@@ -94,6 +101,7 @@ class RowFilterHandler
      *
      * @param $columnName
      * @param $validColumns
+     *
      * @return bool
      */
     public function canUseProvidedColumn(string $columnName, array $validColumns)
@@ -105,12 +113,14 @@ class RowFilterHandler
      * Extract filter operator
      *
      * @param string $columnName
-     * @param array $columnData
+     * @param array  $columnData
+     *
      * @return array
      */
     public function extractFilterOperator(string $columnName, array $columnData)
     {
         $operator = $columnData['filter']['operator'] ?? '=';
+
         return compact('operator');
     }
 
@@ -118,15 +128,16 @@ class RowFilterHandler
      * Filter the data
      *
      * @param string $columnName
-     * @param array $columnData
+     * @param array  $columnData
      * @param string $operator
      * @param string $userInput
+     *
      * @return void
      */
     public function doFilter(string $columnName, array $columnData, string $operator, string $userInput)
     {
         $filter = $columnData['filter'] ?? [];
-        $data = $columnData['data'] ?? [];
+        $data   = $columnData['data'] ?? [];
         // check for custom filter strategies and call them
         if (isset($filter['query']) && is_callable($filter['query'])) {
             call_user_func($filter['query'], $this->getQuery(), $columnName, $userInput);
@@ -154,12 +165,23 @@ class RowFilterHandler
                     }
                 }
             } else {
-                if ($operator === 'LIKE') {
-                    $value = $value . '%';
+                if ($operator === strtolower('like')) {
+                    $value = '%' . $value . '%';
                 }
 
-                $this->getQuery()->where($columnName, $operator, $value, $this->getGrid()->getGridFilterQueryType());
+                if (isset($columnData['filter']['relationship'])) {
+                    $modelQuery      = $columnData['filter']['relationship']['modelQuery'];
+                    $relationshipIds = $modelQuery->where($columnData['filter']['relationship']['column'],
+                                                          $operator, $value, $this->getGrid()->getGridFilterQueryType())
+                                                  ->select('id')
+                                                  ->pluck('id');
+
+                    $this->getQuery()->whereIn($columnData['filter']['relationship']['key'], $relationshipIds);
+                } else {
+                    $this->getQuery()->where($columnName, $operator, $value, $this->getGrid()->getGridFilterQueryType());
+                }
             }
         }
     }
+
 }
