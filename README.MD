@@ -18,6 +18,8 @@ I created this repository because it looks like it's no longer maintained.
 
 Translation - around 30% done -> PR are welcome.
 
+Laravel 8 support
+
 If you have order grid with Order - Invoice one to one relationship and you want to filter all orders by invoice name, u can add "relationship" parameter to filter.
 
 So it's gonna look like:
