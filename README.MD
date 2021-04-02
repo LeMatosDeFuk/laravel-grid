@@ -12,3 +12,32 @@ _So all credits goes to him._
 
 
 I created this repository because it looks like it's no longer maintained.
+
+
+# Added features
+
+Translation - around 30% done -> PR are welcome.
+
+If you have order grid with Order - Invoice one to one relationship and you want to filter all orders by invoice name, u can add "relationship" parameter to filter.
+
+So it's gonna look like:
+
+            "invoiceName" => [
+                "label"     => "Name",
+                "presenter" => function ($columnData, $columnName) {
+                    return $columnData->invoice->name;
+                },
+                "filter"    => [
+                    "enabled"      => true,
+                    "operator"     => "=",
+                    "type"         => "select",
+                    "relationship" => [
+                        "modelQuery" => Invoice::query(),
+                        "column"     => "name",
+                        "key"        => "invoiceId"
+                    ],
+                    "data"         => Invoice::pluck('name', 'name'),
+                ],
+            ],
+            
+This example can be used in many more cases. Old solution was made only with validated column data, in my case I could filter only by InvoiceId key, so I couldn't sort by many parameters from invoice. For example I couldn't filter by Invoice name, Invoice address, ....
