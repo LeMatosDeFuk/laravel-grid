@@ -12,9 +12,14 @@
     "grid",
     "laravel-5",
     "laravel5",
-    "laravel6"
+    "laravel-6",
+    "laravel6",
+    "laravel-7",
+    "laravel7",
+    "laravel-8",
+    "laravel8"
   ],
-  "homepage": "https://github.com/leantony/laravel-grid/",
+  "homepage": "https://github.com/lematosefuk/laravel-grid/",
   "authors": [
     {
       "name": "Antony [leantony] Chacha",
