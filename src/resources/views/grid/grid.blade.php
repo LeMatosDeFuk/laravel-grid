@@ -84,7 +84,8 @@
             @if($grid->hasItems())
                 @if($grid->warnIfEmpty())
                     <div class="alert alert-warning" role="alert">
-                        <strong><i class="fas fa-exclamation-triangle text-white"></i>&nbsp;@lang('No data present!')</strong>
+                        <strong><i class="fas fa-exclamation-triangle text-white"></i>&nbsp;@lang('No data present!')
+                        </strong>
                     </div>
                 @endif
             @else
@@ -107,21 +108,21 @@
                                 @if(is_callable($column->data))
                                     @if($column->useRawFormat)
                                         <td class="{{ $column->rowClass }}">
-                                            {!! call_user_func($column->data, $item, $column->key) !!}
+                                            {!! __(call_user_func($column->data, $item, $column->key)) !!}
                                         </td>
                                     @else
                                         <td class="{{ $column->rowClass }}">
-                                            {{ call_user_func($column->data , $item, $column->key) }}
+                                            {{ __(call_user_func($column->data , $item, $column->key)) }}
                                         </td>
                                     @endif
                                 @else
                                     @if($column->useRawFormat)
                                         <td class="{{ $column->rowClass }}">
-                                            {!! $item->{$column->key} !!}
+                                            {!! __($item->{$column->key}) !!}
                                         </td>
                                     @else
                                         <td class="{{ $column->rowClass }}">
-                                            {{ $item->{$column->key} }}
+                                            {{ __($item->{$column->key}) }}
                                         </td>
                                     @endif
                                 @endif
@@ -164,7 +165,7 @@
 @endsection
 @push('grid_js')
     <script>
-        (function($) {
+        (function ($) {
             var grid = "{{ '#' . $grid->getId() }}";
             var filterForm = "{{ '#' . $grid->getFilterFormId() }}";
             var searchForm = "{{ '#' . $grid->getSearchFormId() }}";
@@ -178,7 +179,7 @@
                         scrollTo: false,
                     },
                     // what to do after a PJAX request. Js plugins have to be re-intialized
-                    afterPjax: function(e) {
+                    afterPjax: function (e) {
                         _grids.init();
                     },
                 },
