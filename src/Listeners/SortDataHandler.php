@@ -76,8 +76,10 @@ class SortDataHandler
             $value = $this->request->get($this->getGrid()->getGridSortParam());
             $validGridColumns = $this->getValidGridColumns();
 
-            foreach ($this->grid->extraGridColumns as $extraColumn) {
-                $validGridColumns[] = $extraColumn;
+            if ($this->grid->extraGridColumns) {
+                foreach ($this->grid->extraGridColumns as $extraColumn) {
+                    $validGridColumns[] = $extraColumn;
+                }
             }
 
             if (in_array($value, $validGridColumns)) {
