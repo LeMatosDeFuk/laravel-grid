@@ -1,6 +1,6 @@
 {
   "name": "laravel_grid",
-  "version": "2.0.0",
+  "version": "2.1",
   "description": "laravel data grid inspired by the yii2 gridview",
   "main": "none",
   "directories": {
