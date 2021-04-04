@@ -55,7 +55,7 @@ class RowFilterHandler
                 }
 
                 // column check. Since the column data is coming from a user query
-                if (!isset($columnData['filter']['relationship']) && !$this->canUseProvidedColumn($columnName, $tableColumns)) {
+                if (!isset($columnData['filter']['query']) && !$this->canUseProvidedColumn($columnName, $tableColumns)) {
                     continue;
                 }
 
@@ -137,7 +137,7 @@ class RowFilterHandler
     public function doFilter(string $columnName, array $columnData, string $operator, string $userInput)
     {
         $filter = $columnData['filter'] ?? [];
-        $data   = $columnData['data'] ?? [];
+
         // check for custom filter strategies and call them
         if (isset($filter['query']) && is_callable($filter['query'])) {
             call_user_func($filter['query'], $this->getQuery(), $columnName, $userInput);
@@ -169,17 +169,7 @@ class RowFilterHandler
                     $value = '%' . $value . '%';
                 }
 
-                if (isset($columnData['filter']['relationship'])) {
-                    $modelQuery      = $columnData['filter']['relationship']['modelQuery'];
-                    $relationshipIds = $modelQuery->where($columnData['filter']['relationship']['column'],
-                                                          $operator, $value, $this->getGrid()->getGridFilterQueryType())
-                                                  ->select('id')
-                                                  ->pluck('id');
-
-                    $this->getQuery()->whereIn($columnData['filter']['relationship']['key'], $relationshipIds);
-                } else {
-                    $this->getQuery()->where($columnName, $operator, $value, $this->getGrid()->getGridFilterQueryType());
-                }
+                $this->getQuery()->where($columnName, $operator, $value, $this->getGrid()->getGridFilterQueryType());
             }
         }
     }

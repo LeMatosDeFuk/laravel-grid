@@ -52,8 +52,16 @@ class SortDataHandler
      */
     public function sort()
     {
+        $columns      = $this->getGrid()->getColumns();
+
         if ($sort = $this->checkAndReturnSortParam()) {
-            $this->getQuery()->orderBy($sort, $this->getSortDirection());
+            $column = $columns[$sort];
+            // check for custom sort strategies and call them
+            if (isset($column['sort']['query']) && is_callable($column['sort']['query'])) {
+                call_user_func($column['sort']['query'], $this->getQuery(), $sort, $this->getSortDirection());
+            } else {
+                $this->getQuery()->orderBy($sort, $this->getSortDirection());
+            }
         }
     }
 
@@ -66,11 +74,17 @@ class SortDataHandler
     {
         if ($this->getRequest()->has($this->getGrid()->getGridSortParam())) {
             $value = $this->request->get($this->getGrid()->getGridSortParam());
+            $validGridColumns = $this->getValidGridColumns();
 
-            if (in_array($value, $this->getValidGridColumns())) {
+            foreach ($this->grid->extraGridColumns as $extraColumn) {
+                $validGridColumns[] = $extraColumn;
+            }
+
+            if (in_array($value, $validGridColumns)) {
                 return $value;
             }
         }
+
         return false;
     }
 

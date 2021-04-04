@@ -101,17 +101,17 @@ trait CreatesColumns
             $footer = $this->fetchFooterData($columnName, $columnData)['footer'];
 
             $col = (new Column())->setName($label)
-                ->setKey($columnName)
-                ->setData($data)
-                ->setSearchableColumns($searchable)
-                ->setColumnClass($columnClass)
-                ->setRowClass($rowClass)
-                ->setIsSortable($columnData['sort'] ?? true)
-                ->setUseRawFormat($columnData['raw'] ?? false)
-                ->setFilter($filter)
-                ->setIsExportable($columnData['export'] ?? true)
-                ->setExtra($this->getExtras($columnData))
-                ->setFooter($footer);
+                                 ->setKey($columnName)
+                                 ->setData($data)
+                                 ->setSearchableColumns($searchable)
+                                 ->setColumnClass($columnClass)
+                                 ->setRowClass($rowClass)
+                                 ->setIsSortable($columnData['sort'] ?? true || isset($columnData['query']) ? true : false)
+                                 ->setUseRawFormat($columnData['raw'] ?? false)
+                                 ->setFilter($filter)
+                                 ->setIsExportable($columnData['export'] ?? true)
+                                 ->setExtra($this->getExtras($columnData))
+                                 ->setFooter($footer);
 
             // allow customizations of column attributes
             $result = event(
