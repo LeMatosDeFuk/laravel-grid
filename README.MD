@@ -26,3 +26,14 @@ Translation - around 30% done -> PR are welcome.
 Laravel 8 support
 
 Custom sort query
+
+            "columnName"          => [
+                "filter"    => [...],
+                "sort"      => [
+                    "query" => function ($query, $sortBy, $sortDir) {
+                        return $query->join() // do whatever you want
+                                     ->select()
+                                     ->orderBy();
+                    }
+                ]
+            ],
