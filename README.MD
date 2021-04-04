@@ -24,3 +24,5 @@ I created this repository because it looks like it's no longer maintained.
 Translation - around 30% done -> PR are welcome.
 
 Laravel 8 support
+
+Custom sort query
