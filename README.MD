@@ -23,6 +23,8 @@ Translation - around 30% done -> PR are welcome.
 
 Laravel 8 support
 
+FontAwesome 5 support
+
 Custom sort query
 
             "columnName"          => [
